@@ -14,8 +14,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		// Create array that is the same length as the string
+		int stringLength = string.length();
+		String forwardString = string;
+		String backwardString = "";
+		
+		for(int i = 0; i < stringLength; i++){
+			backwardString = backwardString + forwardString.charAt(stringLength -1 - i);
+		}
+		return backwardString;
 	}
 
 	/**
