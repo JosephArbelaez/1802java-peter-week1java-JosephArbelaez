@@ -35,8 +35,28 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// Preparing the phrase
+			String s = phrase;
+			String secondString = "";
+			
+			if (s.contains("-")){
+				s.replace("-"," ");
+			}
+			String[] sArray = s.split(" ");
+			
+		// Characters
+			char[] charArray = new char[sArray.length];
+			
+			for (int i = 0; i < sArray.length; i++){
+				charArray[i] = sArray[i].charAt(0);
+			}
+			for (int i = 0; i < charArray.length; i++){
+				secondString = secondString + charArray[i];
+			}
+			
+		// Finishing Touches
+			secondString = secondString.toUpperCase();
+		return secondString;
 	}
 
 	/**
@@ -89,17 +109,32 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			
+			double avg = (getSideOne() + getSideTwo() + getSideThree())/3;
+			if (avg == getSideOne() && avg == getSideTwo() && avg == getSideThree())
+			{
+				return true;
+			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			if (getSideOne() == getSideTwo() && getSideOne() != getSideThree()){
+				return true;
+			}
+			if (getSideTwo() == getSideThree() && getSideTwo() != getSideOne()){
+				return true;
+			}
+			if (getSideThree() == getSideOne() && getSideThree() != getSideTwo()){
+				return true;
+			}
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			if (getSideOne() != getSideTwo() && getSideOne() != getSideThree() && getSideTwo() != getSideThree()){
+				return true;
+			}
 			return false;
 		}
 
