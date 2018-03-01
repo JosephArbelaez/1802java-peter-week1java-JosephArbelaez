@@ -483,8 +483,29 @@ public class EvaluationService {
 	 * @param input
 	 * @return
 	 */
+	public double ArmstrongNumber(int input){
+		String num = Integer.toString(input);
+		double[] doubleArray = new double[num.length()];
+		double total = 0;
+		
+		// Split up the numbers
+		for(int i = 0; i < num.length(); i++){
+			doubleArray[i] = Character.getNumericValue(num.charAt(i));
+		}
+		
+		// Raising each space to how many digits the number it has.
+		for(int i = 0; i < num.length(); i++){
+			doubleArray[i] = Math.pow(doubleArray[i], num.length());
+			total = total + doubleArray[i];
+		}
+		return total;
+	}
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
+		double total = ArmstrongNumber(input);
+		
+		if (input == total){
+			return true;
+		}
 		return false;
 	}
 
