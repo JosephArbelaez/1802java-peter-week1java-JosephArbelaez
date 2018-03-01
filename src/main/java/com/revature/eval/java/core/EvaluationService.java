@@ -286,8 +286,15 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String str = string;
+		
+		if (str.length() > 11){
+		str = str.replaceAll("[^0-9]","");
+		}
+		else {
+			//return false;
+		}
+		return str;
 	}
 
 	/**
@@ -300,7 +307,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
 		return null;
 	}
 
@@ -379,9 +385,87 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+
+	public String Conversion (String str){
+		// Special Cases
+		if (str.startsWith("th")){
+			str = str.substring(2) + "thay ";
+			return str;
+		}
+		if (str.startsWith("sch")){
+			str = str.substring(3) + "schay ";
+			return str;					
+		}
+		if (str.startsWith("qu")){
+			str = str.substring(2) + "quay ";
+			return str;
+		}
+		
+		// Normal Cases
+		char c = str.charAt(0);
+		switch (c){
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+			str = str + "ay ";
+			break;
+		case 'b':
+		case 'c':
+		case 'd':
+		case 'f':
+		case 'g':
+		case 'h':
+		case 'j':
+		case 'k':
+		case 'l':
+		case 'm':
+		case 'n':
+		case 'p':
+		case 'q':
+		case 'r':
+		case 's':
+		case 't':
+		case 'v':
+		case 'w':
+		case 'x':
+		case 'y':
+		case 'z':
+			str = str.substring(1) + c + "ay "; 
+			break;
+		}
+		return str;
+	}
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		/** 
+		 * If string has a space then split the words into a String Array,
+		 * otherwise make an array of one and place string in there.
+		*/
+		
+		if (string.contains(" ")){
+			String[] stringArray = string.split(" ");
+			String str = "";
+			// Convert strings
+			for (int i = 0; i < stringArray.length; i++){
+				stringArray[i] = Conversion(stringArray[i]);
+				str = str + stringArray[i];
+				
+			}
+			// remove last space
+			str = str.substring(0, str.length()-1);
+			return str;
+			
+		} else {
+			String[] stringArray = {string};
+			String str = "";
+			str = Conversion(stringArray[0]);
+			
+			// remove last space
+			str = str.substring(0, str.length()-1);
+			return str;
+		}
+
 	}
 
 	/**
