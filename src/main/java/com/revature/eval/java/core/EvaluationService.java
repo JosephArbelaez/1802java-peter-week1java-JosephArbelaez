@@ -170,65 +170,31 @@ public class EvaluationService {
 
 			switch (cArray[i]){
 			case 'A':
-				points = 1;
-				break;
 			case 'E':
-				points = 1;
-				break;
 			case 'I':
-				points = 1;
-				break;
 			case 'O':
-				points = 1;
-				break;
 			case 'U':
-				points = 1;
-				break;
 			case 'L':
-				points = 1;
-				break;
 			case 'N':
-				points = 1;
-				break;
 			case 'R':
-				points = 1;
-				break;
 			case 'S':
-				points = 1;
-				break;
 			case 'T':
 				points = 1;
 				break;
 			case 'D':
-				points = 2;
-				break;
 			case 'G':
 				points = 2;
 				break;
 			case 'B':
-				points = 3;
-				break;
 			case 'C':
-				points = 3;
-				break;
 			case 'M':
-				points = 3;
-				break;
 			case 'P':
 				points = 3;
 				break;
 			case 'F':
-				points = 4;
-				break;
 			case 'H':
-				points = 4;
-				break;
 			case 'V':
-				points = 4;
-				break;
 			case 'W':
-				points = 4;
-				break;
 			case 'Y':
 				points = 4;
 				break;
@@ -236,14 +202,10 @@ public class EvaluationService {
 				points = 5;
 				break;
 			case 'J':
-				points = 8;
-				break;
 			case 'X':
 				points = 8;
 				break;
 			case 'Q':
-				points = 10;
-				break;
 			case 'Z':
 				points = 10;
 				break;
@@ -287,11 +249,11 @@ public class EvaluationService {
 	public String cleanPhoneNumber(String string) {
 		String str = string;
 		
-		if (str.length() > 11){
+		if (str.length() == 11){
 		str = str.replaceAll("[^0-9]","");
 		}
 		else {
-			//return false;
+			throw new IllegalArgumentException();
 		}
 		return str;
 	}
