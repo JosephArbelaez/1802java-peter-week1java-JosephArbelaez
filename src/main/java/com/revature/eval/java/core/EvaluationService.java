@@ -39,9 +39,8 @@ public class EvaluationService {
 			String s = phrase;
 			String secondString = "";
 			
-			if (s.contains("-")){
-				s.replace("-"," ");
-			}
+			s = s.replace("-"," ");
+			
 			String[] sArray = s.split(" ");
 			
 		// Characters
@@ -520,7 +519,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Integer> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
+		
 		return null;
 	}
 
@@ -775,9 +774,87 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	
+	public boolean isNumber (String str){
+		str = str.toUpperCase();
+		switch(str.charAt(0)){
+		case 'A':
+		case 'B':
+		case 'C':
+		case 'D':
+		case 'E':
+		case 'F':
+		case 'G':
+		case 'H':
+		case 'I':
+		case 'J':
+		case 'K':
+		case 'L':
+		case 'M':
+		case 'N':
+		case 'O':
+		case 'P':
+		case 'Q':
+		case 'R':
+		case 'S':
+		case 'T':
+		case 'U':
+		case 'V':
+		case 'W':
+		case 'X':
+		case 'Y':
+		case 'Z':
+			return false;
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+		case '-':
+			return true;
+
+		}
+		return false;
+	}
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		// Initializing Variables and Arrays
+		String[] stringSplit = string.split(" ");
+		int total = 0;
+		int[] numArray = new int[2];
+		int num1 = 0;
+		int num2 = 0;
+		// Try add to an array
+		for (int i = 0; i < string.length(); i++)
+		{
+			if (isNumber(stringSplit[i]) == true){
+				if (num1 != 0){
+					num1 = Integer.parseInt(stringSplit[i]);
+				} else {
+					num2 = Integer.parseInt(stringSplit[i]);
+				}
+			} else {
+				continue;
+			}
+			
+		}
+		if(string.contains("plus")){
+			total = num1 + num2;
+		}
+		if(string.contains("minus")){
+			total = num1 - num2;
+		}
+		if(string.contains("divided")){
+			total = num1 / num2;
+		}
+		if(string.contains("multiplied")){
+			total = num1 * num2;
+		}
+		return total;
 	}
 
 }
