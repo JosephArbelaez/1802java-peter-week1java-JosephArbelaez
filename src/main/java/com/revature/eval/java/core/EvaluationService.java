@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -332,7 +333,7 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+
 			return 0;
 		}
 
@@ -502,9 +503,31 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
+	
 	public List<Integer> calculatePrimeFactorsOf(long l) {
+		int num = (int) l;
+		List<Integer> intList = new ArrayList<>();
 		
-		return null;
+		// Make it so that i isn't an even number.
+		
+		while(num % 2 == 0){
+			intList.add(2);
+			num = num/2;
+		}
+		
+		// Starting at 3, skip even iterations of i.
+		// i can't be larger than the square root of n.
+		for (int i = 3; i <= Math.sqrt(num); i += 2){
+			while (num % i == 0){				
+			intList.add(i);
+			num = num / i;
+			}
+		}
+		
+		if (num > 2){
+			intList.add(num);
+		}
+		return intList;
 	}
 
 	/**
@@ -533,6 +556,7 @@ public class EvaluationService {
 	 * gur ynml qbt. ROT13 Gur dhvpx oebja sbk whzcf bire gur ynml qbt. gives The
 	 * quick brown fox jumps over the lazy dog.
 	 */
+	
 	static class RotationalCipher {
 		private int key;
 
@@ -542,10 +566,24 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
-		}
+			String s = "";
 
+			for(int i = 0; i < string.length(); i++){
+
+				if (Character.isLetter(string.charAt(i))){
+					char c = (char)(string.charAt(i) + key);
+
+					if (c > 'z'){
+						s += (char)(string.charAt(i) - (26 - key));
+					} else {
+						s += (char)(string.charAt(i) + key);
+					}
+				} else {
+					s += (char)(string.charAt(i));
+				}
+			}
+			return s;
+		}
 	}
 
 	/**
@@ -560,9 +598,32 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
+	
+	public static boolean isPrimeNumber(int j){
+		if (j%2 == 0 && j != 2) {
+			return false;
+		}
+		for (int i = 3; i <= Math.sqrt(j); i+=2){
+
+			if (j % i == 0){
+				return false;
+			}
+		}
+		return true;
+	}
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		List<Integer> l = new ArrayList<>();
+		if (i > 0){
+			for (int j = 2; j < 200000; j++){
+				if (isPrimeNumber(j)){
+					l.add(j);
+				}
+			}
+		} else {
+			throw new IllegalArgumentException();
+		}
+		int x = l.get(i-1);
+		return x;
 	}
 
 	/**
