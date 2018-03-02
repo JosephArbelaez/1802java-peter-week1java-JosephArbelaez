@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -249,13 +250,14 @@ public class EvaluationService {
 	public String cleanPhoneNumber(String string) {
 		String str = string;
 		
-		if (str.length() == 11){
 		str = str.replaceAll("[^0-9]","");
+		str = str.replaceAll(" ", "");
+		if (str.length() == 10){
+			return str;	
 		}
-		else {
+		else{
 			throw new IllegalArgumentException();
 		}
-		return str;
 	}
 
 	/**
@@ -268,7 +270,27 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		return null;
+		
+		// String Prep
+		string = string.replaceAll("\n", "");
+		string = string.replaceAll("[^a-zA-Z]", " ");
+
+		String[] stringArray = string.split(" "); 
+		
+		/** Put String in Hashmap
+		* HashMaps accept one null key and any amount of null values. Are not synchronized.
+		*/
+		
+		HashMap<String, Integer> h = new HashMap<String, Integer>();
+		
+		for(String i:stringArray){
+			if(!h.containsKey(i)){
+				h.put(i, 1);
+			} else {
+				h.put(i, h.get(i) + 1);
+		}
+		}
+		return h;
 	}
 
 	/**
