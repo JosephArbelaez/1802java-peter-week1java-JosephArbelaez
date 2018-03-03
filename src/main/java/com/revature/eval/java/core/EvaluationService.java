@@ -1,11 +1,12 @@
 package com.revature.eval.java.core;
 
-import java.lang.reflect.Array;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
 
@@ -651,7 +652,9 @@ public class EvaluationService {
 	 * rxpyi ldmul cqfnk hlevi gsvoz abwlt gives thequickbrownfoxjumpsoverthelazydog
 	 *
 	 */
-	static class AtbashCipher {
+
+	
+	public static class AtbashCipher {
 
 		/**
 		 * Question 13
@@ -659,8 +662,9 @@ public class EvaluationService {
 		 * @param string
 		 * @return
 		 */
-		public static String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
-		public static String cipher = "zyxwvutsrqponmlkjihgfedcba0123456789";
+		
+		static String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+		static String cipher = "zyxwvutsrqponmlkjihgfedcba0123456789"; 
 		
 		public static String encode(String string) {
 			// Prepare the strings
@@ -748,7 +752,26 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
+		string = string.replaceAll("-", "");
+		char[] cArray = string.toCharArray();
+		int[] iArray = new int[cArray.length];
+		int total = 0;
+		for (int i = 0; i < cArray.length; i++){
+			if (i==9 && cArray[i] == 'X'){
+				iArray[i] = 10;
+			}
+			iArray[i] = cArray[i];
+			
+		}
+		for(int i = 0; i < iArray.length ; i++){
+			int value = iArray[i];
+			int position = 10 - i;
+
+			total += (value*position);
+			}		
+		if (total % 11 == 0){
+			return true;
+		}
 		return false;
 	}
 
@@ -766,7 +789,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
+		Set<Character> lettersRemaining = new HashSet<>();
+		
+		for (char ch = 'a'; ch <='z'; ch++){
+			lettersRemaining.add(ch);
+		}
+		
+		string = string.toLowerCase();
+		
+		for (int i = 0; i < string.length(); i++){
+			lettersRemaining.remove(string.charAt(i));
+		}
+		
+		if (lettersRemaining.size() == 0){
+			return true;
+		}
 		return false;
 	}
 
@@ -779,7 +816,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
+		
 		return null;
 	}
 
