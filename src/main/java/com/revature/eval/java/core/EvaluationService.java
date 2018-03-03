@@ -1,5 +1,6 @@
 package com.revature.eval.java.core;
 
+import java.lang.reflect.Array;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -658,9 +659,47 @@ public class EvaluationService {
 		 * @param string
 		 * @return
 		 */
+		public static String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+		public static String cipher = "zyxwvutsrqponmlkjihgfedcba0123456789";
+		
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			// Prepare the strings
+			string = string.toLowerCase();
+			string = string.replaceAll("[^a-z0-9]", "");
+			char[] cArray = string.toCharArray();
+			
+			String[] cipherStringArray = new String[(string.length()/5) + 1];
+			String cipheredString = "";
+			String s = "";
+			
+			for (int i = 0; i < cArray.length; i++){
+				int x = alphabet.indexOf(cArray[i]);
+				cArray[i] = cipher.charAt(x);
+			}
+			
+			for (char c : cArray){
+				cipheredString += c;
+			}
+			
+			if (string.length() < 5){
+				return cipheredString;
+			} 
+				for (int i = 0; i < (string.length()/5) + 1; i++){
+					if (cipheredString.length() >= 5){
+						cipherStringArray[i] = cipheredString.substring(0, 5);
+						cipheredString = cipheredString.substring(5,cipheredString.length());
+						cipherStringArray[i] = cipherStringArray[i] + " ";
+						continue;
+					}
+					
+					cipherStringArray[i] = cipheredString;
+				}
+				
+				for (String st : cipherStringArray){
+					s += st;
+				}
+			s = s.trim();
+			return s;
 		}
 
 		/**
