@@ -709,8 +709,19 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.replaceAll(" ", "");
+			char[] cArray = string.toCharArray();
+			String s = "";
+			
+			for (int i = 0; i < string.length(); i++){
+				int x = cipher.indexOf(cArray[i]);
+				cArray[i] = alphabet.charAt(x);
+			}
+			
+			for (char c: cArray){
+				s += c;
+			}
+			return s;
 		}
 	}
 
