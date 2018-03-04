@@ -834,8 +834,26 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int max = i--;
+		Set<Integer> multiples = new HashSet<>();
+		int total = 0;
+		
+		
+		for(int j = 0; j < set.length; j++){
+			if (set[j] < max){
+				for(int k = 0; k < max; k= k + set[j]){
+					multiples.add(k);
+				}
+			}
+		}
+
+		Integer[] iArray = multiples.toArray(new Integer[multiples.size()]);
+
+		for (int j = 0; j < iArray.length; j++){
+			total += iArray[j];
+		}
+		
+		return total;
 	}
 
 	/**
